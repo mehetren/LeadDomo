@@ -1,0 +1,24 @@
+minimum_cumulusci_version: '3.73.0'
+project:
+    name: LEAD_DEMO
+    package:
+        name: LEAD_DEMO
+        api_version: '55.0'
+    git:
+    source_format: sfdx
+
+tasks:
+    robot:
+        options:
+            suites: robot/LEAD_DEMO/tests/test_lead2.robot
+            options:
+                outputdir: robot/LEAD_DEMO/results
+
+    robot_testdoc:
+        options:
+            path: robot/LEAD_DEMO/tests
+            output: robot/LEAD_DEMO/doc/LEAD_DEMO_tests.html
+
+    run_tests:
+        options:
+            required_org_code_coverage_percent: 75
