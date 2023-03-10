@@ -35,3 +35,5 @@ jobs:
           uses: sfdx-actions/setup-sfdx@v1
           with:
              sfdx-auth-url: ${{ secrets.AUTH_SECRET }}
+          run: |
+           sfdx force:auth:web:login --setalias MyDevOrg --instanceurl https://sem-ag-devhub--qafull.sandbox.my.salesforce.com
