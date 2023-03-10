@@ -37,6 +37,6 @@ jobs:
              sfdx-auth-url: ${{ secrets.AUTH_SECRET }}
         - name: create authorised login  
           run: |
-            sfdx force:auth:web:login --setalias MyDevOrg --instanceurl https://sem-ag-devhub--qafull.sandbox.my.salesforce.com
+            sfdx auth web login --alias MyDevOrg --instance-url https://sem-ag-devhub--qafull.sandbox.my.salesforce.com
             sfdx-auth-url: ${{ secrets.AUTH_SECRET }}
           
