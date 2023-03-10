@@ -1,0 +1,41 @@
+name: robot_test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+  
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+        # Install Salesforce CLI
+        - name: Install Salesforce CLI
+          run: |
+            wget https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
+            mkdir sfdx-cli
+            tar xJf sfdx-linux-amd64.tar.xz -C sfdx-cli --strip-components 1
+            ./sfdx-cli/install
+            
+        -name: Connect to the saleforce
+         uses: sfdx-actions/setup-sfdx@v1
+         with:
+          sfdx-auth-url: ${{ secrets.AUTH_SECRET }}
+         run: |
+               sfdx force:auth:web:login --setalias MyDevOrg --instanceurl https://sem-ag-devhub--qafull.sandbox.my.salesforce.com
+          
+        # Checkout the code in the pull request
+        - name: 'Checkout source code'
+          uses: actions/checkout@v2
+              
+        - name: Install pipx
+          run: |
+              pip install pipx
+        - name: Install cumulusci
+          run: |
+              pipx install cumulusci
