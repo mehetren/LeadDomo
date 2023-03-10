@@ -19,7 +19,8 @@ jobs:
           SF_PASSWORD: ${{ secrets.SF_PASSWORD }}
           SF_TOKEN: ${{ secrets.SF_TOKEN }}
         run: |
-          sfdx force:auth:jwt:grant --clientid ${{ secrets.SF_CLIENTID }} --jwtkeyfile server.key --username $SF_USERNAME --password $SF_PASSWORD --setdefaultdevhubusername --instanceurl https://sem-ag-devhub--qafull.sandbox.lightning.force.com --setalias DevHub
+          sfdx force:auth:jwt:grant -u test.automation@sem.ag.devhub.qafull -f /home/runner/work/LeadDomo/LeadDomo/server.key -i ${{ secrets.SF_CLIENTID }} --instanceurl https://sem-ag-devhub--qafull.sandbox.lightning.force.com --setalias DevHub
+          # sfdx force:auth:jwt:grant --clientid ${{ secrets.SF_CLIENTID }} --jwtkeyfile server.key --username $SF_USERNAME --password $SF_PASSWORD --setdefaultdevhubusername --instanceurl https://sem-ag-devhub--qafull.sandbox.lightning.force.com --setalias DevHub
       - name: Create Scratch Org
         run: |
           sfdx force:org:create -f config/project-scratch-def.json -a scratch-org-1 -s -v DevHub -d 30 -w 10 -e "Enterprise"
