@@ -32,10 +32,4 @@ jobs:
           name: 'Checkout source code'
           uses: actions/checkout@v2
               
-          name: Install pipx
-          run: |
-              pip install pipx
-          name: Install cumulusci
-          run: |
-          
-              pipx install cumulusci
+      
