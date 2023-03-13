@@ -13,6 +13,14 @@ jobs:
           tar xJf sfdx-linux-amd64.tar.xz -C sfdx-cli --strip-components 1
           ./sfdx-cli/install
           sfdx --version
+          
+      - name: Install pipx
+        run: |
+              pip install pipx
+      - name: Install cumulusci
+        run: |
+              pipx install cumulusci
+
       - name: Authenticate to Salesforce Org
         env:
           SF_USERNAME: ${{ secrets.SF_USERNAME }}
